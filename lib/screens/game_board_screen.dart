@@ -14,3 +14,12 @@ class GameBoardScreen extends StatefulWidget {
   @override
   State<GameBoardScreen> createState() => _GameBoardScreenState();
 }
+class _GameBoardScreenState extends State<GameBoardScreen> {
+  late GameState _gameState;
+  late Player _currentPlayerX;
+  late Player _currentPlayerO;
+  int _player1Wins = 0;
+  int _player2Wins = 0;
+  int _ties = 0;
+  final GameService _gameService = GameService();
+  bool _isSaving = false;
