@@ -97,3 +97,27 @@ class _GameBoardScreenState extends State<GameBoardScreen> {
       ),
     );
   }
+  Future<void> _saveMatch() async {
+    if (_isSaving) return;
+
+    setState(() => _isSaving = true);
+
+    try {
+      final match = Match(
+        player1Name: _currentPlayerX.name,
+        player2Name: _currentPlayerO.name,
+        winner: _gameState.winner ?? 'tie',
+        board: _gameState.board,
+        date: DateTime.now(),
+        player1Symbol: 'X',
+        player2Symbol: 'O',
+      );
+      await _gameService.saveMatch(match);
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error saving match: $e')));
+    } finally {
+      setState(() => _isSaving = false);
+    }
+  }
