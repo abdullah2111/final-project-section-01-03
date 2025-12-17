@@ -10,3 +10,7 @@ class GameBoardScreen extends StatefulWidget {
     required this.player1,
     required this.player2,
   }) : super(key: key);
+
+  @override
+  State<GameBoardScreen> createState() => _GameBoardScreenState();
+}
